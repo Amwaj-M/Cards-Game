@@ -72,7 +72,7 @@ let countDown;
         cards_cont.appendChild(cardElement);
       });
 
-      // After 5 seconds, hide the numbers and display the target number
+      // After some seconds, hide the numbers and display the target number
       setTimeout(() => {
         hideNumbers();
         displayTargetNumber(targetNumber);
@@ -101,7 +101,7 @@ let countDown;
     function handleCardSelection(card) {
         if (flippedCards.length < 2) {
             // Flip the card
-            card.textContent = card.dataset.number; // Assuming you set dataset.number when creating the card
+            card.textContent = card.dataset.number; 
             flippedCards.push(card);
         }
     
