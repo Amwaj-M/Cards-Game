@@ -5,7 +5,8 @@
 }
 
 body{
- background-image: url('back-game.png');
+ background-image: url('background-game.jpg');
+ background-size: contain;
 }
 
 .container{
@@ -14,14 +15,14 @@ body{
     display: flex;
     /* flex-direction: column; */
     align-items: center;
-    justify-content: center;
+        justify-content: center;
     text-align: center;
     font-family: 'Harmattan', sans-serif ;
 }
 .cards{
-    background-color:rgba(255, 255, 255, 0.795);
+    background-color:rgba(255, 255, 255, 0.804);
     border-radius: 20px;
-    box-shadow: 0px 3px 20px rgb(64, 64, 64);
+    box-shadow: 0px 3px 20px rgba(64, 64, 64, 0.676);
 
 }
 
@@ -33,19 +34,20 @@ body{
     justify-content: center;
     text-align: center;
 }
-.number{
+.title{
     margin-top: 20px;
-    width: 15vw;
-    height: 25vh ;
-    border: 1px solid rgba(45, 45, 45, 0.489);;
+    font-size: 2.5rem;
+    color: rgb(57, 57, 57);
+
+}
+.number{
     border-radius: 10px;
-    color: rgb(45, 45, 45);
-    background-color: #ffffff;
+    color: rgb(57, 57, 57);
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 4rem;
-
+    
     }
 
     .grid-container , .grid-container2 , .grid-container3 {
@@ -66,6 +68,9 @@ body{
         padding-top: 20px;
         text-align: center;
         border: 1px solid #FCA001 ;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
     }
 
     .grid-container2 > div {
@@ -90,10 +95,11 @@ body{
         border: 1px solid #A50102 ;
     }
     .hCard {  
-        margin-top: 20px;
-        padding: 20px;
-        color: rgb(45, 45, 45);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: rgb(57, 57, 57);
         font-size: 3rem;
-       }
-
+    }
+    
  
