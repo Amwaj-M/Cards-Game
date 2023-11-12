@@ -35,6 +35,7 @@ const timeLeft = document.getElementById("time-left");
 const resultCont = document.getElementById("result-cont");
 const resultText = document.getElementById("result-text");
 
+
 let flippedCards = [];
 let currentIndex = 0;
 let score = 0;
@@ -48,19 +49,19 @@ let countDown;
       timeLeft.textContent = timer;
       if (timer <= 0) {
         clearInterval(countDown);
-        checkAnswer("", null);
-       }
+        checkCards([]);
+      }
       }, 1000);
-    }
+    } 
 
+    function startGame(index) {
+      clearGame();
 
-    function startGame(level ) {
-      const targetNumber = level.targetNumber;
-      const numbersToShow = level.numbersToShow;
-
+      let targetNumber = index.targetNumber;
+      let numbersToShow = index.numbersToShow;
 
       // Display cards with numbersToShow
-      numbersToShow.forEach((number, index) => {
+      numbersToShow.forEach((number) => {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card','hCard');
         cardElement.textContent = number;
@@ -78,6 +79,21 @@ let countDown;
         displayTargetNumber(targetNumber);
       }, 7000);
     }
+
+    function clearGame() {
+      // Clear the timer
+      clearInterval(countDown);
+      timer = 10;
+      timeLeft.textContent = timer;
+    
+      // Clear the displayed cards
+      cards_cont.innerHTML = '';
+      number.innerHTML = '?';
+    
+      // Clear the result text
+      resultText.textContent = '';
+    }
+    
 
     function hideNumbers() {
       // Hide the numbers on the cards
@@ -114,34 +130,43 @@ let countDown;
     function checkCards(cards) {
         const firstCardNumber = parseInt(cards[0].textContent);
         const secondCardNumber = parseInt(cards[1].textContent );
-      
+
         if (cardsMatch(firstCardNumber, secondCardNumber)) {
-          resultText.textContent = '👏💥صح عليك ';
+          resultText.textContent = '👏💥كفووو';
+          // clearInterval(countDown);
+          currentIndex++;
           score++;
           updateScore();
-      
-          // Move to the next level if available
-          currentIndex++;
-          if (currentIndex < game_level1.length) {
-            timer = 10;
-            timeLeft.textContent = timer;
-            showTimer();
-            resetGame();
-            startGame(game_level1[currentIndex]);
-          } else {
-            resultText.textContent = `You completed all levels! Final Score: ${score}`;
-          }
-          resetFlippedCards();
-        } else {
-          resultText.textContent = '🐠!افاا';
-          setTimeout(() => {
-            // If the cards don't match, reset the result text after a short delay
-            resultText.textContent = '';
-            resetFlippedCards();
-          }, 1500);
-        }
-    }
 
+         // Move to the next level if available
+    if (currentIndex < game_level1.length) {
+      setTimeout(() => {
+        resetGame();
+        clearGame();
+        startGame(game_level1[currentIndex]);
+      }, 2000); 
+    } else {
+      resultText.textContent = ` النتيجة ${score}`;
+    }
+  }else {
+    resultText.textContent = '🐠!افاا';
+    setTimeout(() => {
+      resultText.textContent = '';
+      resetFlippedCards();
+
+      // Move to the next level if available
+      currentIndex++;
+      if (currentIndex < game_level1.length) {
+        clearGame();
+        startGame(game_level1[currentIndex]);
+      } else {
+        resultText.textContent = score;
+      }
+    }, 1500);
+  }
+}
+
+    
     function cardsMatch(firstCardNumber, secondCardNumber) {
         const currentLevel = game_level1[currentIndex];
         const correctNumbers = currentLevel.correct.map(number => parseInt(number));
@@ -158,7 +183,7 @@ let countDown;
     }
   
     function updateScore() {
-        document.getElementById('score').textContent = `Score: ${score}`;
+        document.getElementById('score').textContent = `النتيجة ${score}`;
     }
   
     function resetGame() {
@@ -166,7 +191,6 @@ let countDown;
         currentIndex = 0;
         updateScore();
     }
-  
       // Start the game with the first level
       startGame(game_level1[currentIndex]);
 
