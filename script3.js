@@ -77,7 +77,7 @@ const game_level3 = [
         setTimeout(() => {
           hideNumbers();
           displayTargetNumber(targetNumber);
-        }, 7000);
+        }, 9000);
       }
   
       function clearGame() {
@@ -133,7 +133,7 @@ const game_level3 = [
   
           if (cardsMatch(firstCardNumber, secondCardNumber)) {
             resultText.textContent = '👏💥كفووو';
-            // clearInterval(countDown);
+            clearInterval(countDown);
             currentIndex++;
             score++;
             updateScore();
@@ -146,7 +146,7 @@ const game_level3 = [
           startGame(game_level3[currentIndex]);
         }, 2000); 
       } else {
-        resultText.textContent = ` النتيجة ${score}`;
+        // resultText.textContent = ` النتيجة ${score}`;
       }
     }else {
       resultText.textContent = '🐠!افاا';
@@ -160,7 +160,10 @@ const game_level3 = [
           clearGame();
           startGame(game_level3[currentIndex]);
         } else {
-          resultText.textContent = score;
+          // resultText.textContent = score;
+        
+          // resultText.textContent = ` النتيجة ${score}`;
+
         }
       }, 1500);
     }

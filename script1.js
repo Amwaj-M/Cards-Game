@@ -133,11 +133,11 @@ let countDown;
 
         if (cardsMatch(firstCardNumber, secondCardNumber)) {
           resultText.textContent = '👏💥كفووو';
-          // clearInterval(countDown);
+          clearInterval(countDown);
           currentIndex++;
           score++;
           updateScore();
-
+        
          // Move to the next level if available
     if (currentIndex < game_level1.length) {
       setTimeout(() => {
@@ -146,7 +146,7 @@ let countDown;
         startGame(game_level1[currentIndex]);
       }, 2000); 
     } else {
-      resultText.textContent = ` النتيجة ${score}`;
+      // resultText.textContent = ` النتيجة ${score}`;
     }
   }else {
     resultText.textContent = '🐠!افاا';
@@ -160,12 +160,12 @@ let countDown;
         clearGame();
         startGame(game_level1[currentIndex]);
       } else {
-        resultText.textContent = score;
-      }
+      // resultText.textContent = ` النتيجة ${score}`;
+  
+    }
     }, 1500);
   }
 }
-
     
     function cardsMatch(firstCardNumber, secondCardNumber) {
         const currentLevel = game_level1[currentIndex];
